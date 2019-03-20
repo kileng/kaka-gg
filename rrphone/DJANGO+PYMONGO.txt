@@ -1,2 +1,0 @@
-安装Python3.7
-安装 django，pymongo库。
