@@ -1,0 +1,154 @@
+{% extends 'bash.html' %}
+{% load staticfiles %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block JS %}
+
+<script src="{% static 'js/vue.js' %}"></script>
+<script src="{% static 'js/wx/index.js' %}"></script>
+<script src="{% static 'js/vue-resource.js' %}"></script>
+
+
+{% endblock %}
+{% block body %}
+<div class="col-md-10  offset-md-1 col-sm-12" id="mix">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr >
+                <th>
+                    公众号名称
+                </th>
+                <th>
+                    粉丝量
+                </th>
+                <th>
+                    所属城市
+                </th>
+                <th>
+                    联系人
+                </th>
+                <th>
+                    电话
+                </th>
+
+                <th>
+                    微信ID
+                </th>
+                <th>
+                    首图文价格
+                </th>
+                <th>
+                    推荐等级
+                </th>
+                <th>
+                    创建人
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <div v-if="see">
+                <tr v-for="item in ts">
+                    <td>{[item.wxname]}</td>
+                    <td>{[item.fans]}</td>
+                    <td>{[item.city]}</td>
+                    <td>{[item.name]}</td>
+                    <td>{[item.phone]}</td>
+                    <td>{[item.wxid]}</td>
+                    <td>{[item.wxfi]}</td>
+                    <td>{[item.level]}</td>
+                    <td>{[item.entername]}</td>
+                </tr>
+            </div>
+        </tbody>
+    </table>
+    <button class="btn" v-on:click='greet' value="获取">获取</button>
+</div>
+
+
+
+{% block login %}
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h3 class="modal-title" id="myModalLabel">
+                    公众号使用费用
+                    </h4>
+            </div>
+            <form role="form" method="POST" action="/wx/">
+                {% csrf_token %}
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div>
+                            <label for="name">
+                                公众号名称
+                            </label>
+                            <input type="text" id='wxname' class="form-control" placeholder="公众号名称：木卡卡杂货铺" name="wxname">
+                        </div>
+                        <div>
+                            <label for="name">
+                                粉丝量
+                            </label>
+                            <input type="text" id='fans' class="form-control" placeholder="请输入使用人例如：衡宥麟" name="fans">
+                        </div>
+                        <div>
+                            <label for="name">
+                                城市
+                            </label>
+                            <input type="text" id='city' class="form-control" placeholder="请输入城市例如：成都" name="city">
+                        </div>
+                        <div>
+                            <label for="name">
+                                联系人
+                            </label>
+                            <input type="text" id='name' class="form-control" placeholder="请输入联系人例如：衡宥麟" name="name">
+                        </div>
+
+                        <div>
+                            <label for="name">
+                                电话
+                            </label>
+                            <input type="text" id='phone' class="form-control" placeholder="请输入电话例如：15828232213" name="phone">
+                        </div>
+                        <div>
+                            <label for="name">
+                                微信ID
+                            </label>
+                            <input type="text" id='wxid' class="form-control" placeholder="请输入微信ID例如：kileng" name="wxid">
+                        </div>
+                        <div>
+                            <label for="name">
+                                首图文价格
+                            </label>
+                            <input type="text" id='wxfi' class="form-control" placeholder="请输入首图文价格例如：5000" name="wxfi">
+                        </div>
+                        <div>
+                            <label for="name">
+                                推荐等级
+                            </label>
+                            <input type="text" id='level' class="form-control" placeholder="请输入推荐等级例如：1" name="level">
+                        </div>
+                        <div>
+                            <label for="name">
+                                创建人
+                            </label>
+                            <input type="text" id='entername' class="form-control" placeholder="请输入创建人例如：衡宥麟" name="entername">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="reset" class="btn btn-default">重置</button>
+                    <button type="submit" class="btn btn-warning">确认</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% endblock %}

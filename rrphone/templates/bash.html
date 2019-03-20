@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="http://rp.renruihr.com/favicon.ico" data-reactid="10">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    {% load static %}
+    <script src="{% static 'js/jQuery.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+    {% block static %}
+    {# JS CSS 新建 #}
+
+    {% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark col-12 ">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"></span>(✧◡✧)</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="#" class="btn" data-toggle="modal" data-target="#login">填写</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block body %}
+    {# 分隔线 #}
+    {% endblock %}
+
+    {% block login %}
+    {# 分隔线 #}
+    {% endblock %}
+    {% block JS %}
+
+    {% endblock %}
+</body>
+
+</html>
